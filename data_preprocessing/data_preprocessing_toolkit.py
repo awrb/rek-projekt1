@@ -36,7 +36,7 @@ class DataPreprocessingToolkit(object):
         return df
 
     def add_length_of_stay(self, df):
-        df.loc[:, "length_of_stay"] = (df["date_to"] - df["date_from"]).dt.days
+        # Write your code here
         return df
 
     def add_book_to_arrival(self, df):
@@ -56,7 +56,7 @@ class DataPreprocessingToolkit(object):
         return df
 
     def add_night_price(self, df):
-        df.loc[:, "night_price"] = np.round(df["accomodation_price"] / df["length_of_stay"] / df["n_rooms"], 2)
+        # Write your code here
         return df
 
     def clip_book_to_arrival(self, df):
@@ -127,14 +127,7 @@ class DataPreprocessingToolkit(object):
         return df
 
     def map_night_price_to_room_segment_buckets(self, df):
-        night_prices = df.loc[df['accomodation_price'] > 1]\
-            .groupby('room_group_id')['night_price'].mean().reset_index()
-        night_prices.columns = ['room_group_id', 'room_night_price']
-        df = pd.merge(df, night_prices, on=['room_group_id'], how='left')
-        df.loc[df['room_night_price'].isnull(), 'room_night_price'] = 0.0
-        df.loc[:, 'room_segment'] = df['room_night_price'].apply(
-            lambda x: self.map_value_to_bucket(x, self.room_segment_buckets))
-        df = df.drop(columns=['room_night_price'])
+        # Write your code here
         return df
 
     # def map_night_price_to_room_segment_buckets(self, df):
