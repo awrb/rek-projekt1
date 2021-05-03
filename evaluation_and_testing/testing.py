@@ -16,7 +16,7 @@ from evaluation_and_testing.evaluation_measures import ndcg
 def evaluate_train_test_split_explicit(recommender, interactions_df, items_df, seed=6789):
     rng = np.random.RandomState(seed=seed)
 
-    if type(interactions_df) == dict:
+    if isinstance(interactions_df, dict):
         # If interactions_df is a dict with already split data, use the split
         interactions_df_train = interactions_df['train']
         interactions_df_test = interactions_df['test']

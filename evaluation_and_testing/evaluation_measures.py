@@ -48,7 +48,8 @@ def hr(recommendations, real_interactions, n=1):
 
         previous_user_id = row['user_id']
 
-    result /= len(recommendations['user_id'].unique())
+    if len(recommendations['user_id'].unique()) > 0:
+        result /= len(recommendations['user_id'].unique())
 
     return result
 
@@ -82,6 +83,7 @@ def ndcg(recommendations, real_interactions, n=1):
 
         previous_user_id = row['user_id']
 
-    result /= len(recommendations['user_id'].unique())
+    if len(recommendations['user_id'].unique()) > 0:
+        result /= len(recommendations['user_id'].unique())
 
     return result
