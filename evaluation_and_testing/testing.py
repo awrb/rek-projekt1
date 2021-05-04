@@ -62,13 +62,17 @@ def evaluate_train_test_split_implicit(recommender, interactions_df, items_df, s
     # Write your code here
     rng = np.random.RandomState(seed=seed)
 
-    if type(interactions_df) == 'dict':
+    if isinstance(interactions_df, dict): # fixed the check here as it was not working as expected, see the snippet below  
+        '''
+        >>> d = {}
+        >>> type(d) == 'dict'
+        False
+        '''
         # If interactions_df is a dict with already split data, use the split
         interactions_df_train = interactions_df['train']
         interactions_df_test = interactions_df['test']
     else:
         # Otherwise split the dataset into train and test
-
         shuffle = np.arange(len(interactions_df))
         rng.shuffle(shuffle)
         shuffle = list(shuffle)
